@@ -35,7 +35,14 @@ public class MutationFuzzer implements Fuzzer {
         // Returns first each seed once and then generates new inputs
 
         // todo mutate input
-
+        if (seed_index < seeds.length) {
+            // Still seeding
+            inp = seeds[seed_index++];
+        } else {
+            // Mutating
+            inp = mutator.mutate(schedule.choose(population).getData());
+        }
+        inputs.add(inp);
         return inp;
     }
 
