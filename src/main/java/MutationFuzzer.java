@@ -34,7 +34,6 @@ public class MutationFuzzer implements Fuzzer {
     public String fuzz() {
         // Returns first each seed once and then generates new inputs
 
-        // todo mutate input
         if (seed_index < seeds.length) {
             // Still seeding
             inp = seeds[seed_index++];
@@ -51,7 +50,17 @@ public class MutationFuzzer implements Fuzzer {
         // Inform scheduler about path frequency
         Pair<String, String> result = Fuzzer.super.run(runner);
 
-       // todo feedback
+        HashMap<Integer, Integer> frequency = schedule.getFrequency();
+        int hashCode = ((CoverageRunner) runner).getCoverage().hashCode();
+        if (frequency.containsKey(hashCode)) {
+            frequency.put(hashCode, frequency.get(hashCode) + 1);
+        } else {
+            frequency.put(hashCode, 1);
+
+            Seed s = new Seed(inp);
+            s.setCoverageHashCode(hashCode);
+            population.add(s);
+        }
 
         return result;
     }
