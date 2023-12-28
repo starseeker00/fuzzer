@@ -67,7 +67,7 @@ public class Mutator {
     }
 
     public void Splice() {
-        // todo
+        current.delete(0, current.length() / 2).append(last.substring(last.length() / 2));
     }
 
 
