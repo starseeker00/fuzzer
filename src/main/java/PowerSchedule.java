@@ -18,9 +18,18 @@ public class PowerSchedule {
     public Seed choose(List<Seed> population) {
         assignEnergy(population);
 
-        // todo
         // normalize energy
         // choose by energy
+        double energy = population.stream().mapToDouble(Seed::getEnergy).sum();
+        double random = new Random().nextDouble() * energy;
+
+        double cumulativeWeight = 0.0;
+        for (Seed seed : population) {
+            cumulativeWeight += seed.getEnergy();
+            if (cumulativeWeight > random) {
+                return seed;
+            }
+        }
 
         return population.get(population.size() - 1);
     }
