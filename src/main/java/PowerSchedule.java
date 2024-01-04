@@ -8,7 +8,11 @@ public class PowerSchedule {
 
     public void assignEnergy(List<Seed> population) {
         // Assign exponential energy inversely proportional to path frequency
-        // todo
+        for (Seed seed : population) {
+            seed.setEnergy(
+                    1 / Math.pow(frequency.get(seed.getCoverageHashCode()), 5)
+            );
+        }
     }
 
     public Seed choose(List<Seed> population) {
