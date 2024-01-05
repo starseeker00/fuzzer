@@ -42,6 +42,10 @@ public String test(String str) {
 }
 ```
 
+## 演示视频
+
+视频链接：[《软件测试》代码作业演示视频_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1WT4y1H7Ts)
+
 ## 架构图
 
 ![fuzzer.svg](img/fuzzer.svg)
